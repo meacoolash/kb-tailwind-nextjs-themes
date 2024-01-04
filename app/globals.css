@@ -2,26 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
 
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --color-primary: 255 115 179;
+    ---------: rgb(255 115 179); /* for Tailwind, we only need numbers. without rgb, we do not see the color so I use another empty "variable/class/whatever". Tailwind should purge code anyways */
+    --color-secondary: 111 114 185;
   }
+
+  .dark {
+    --color-primary: 255 115 4;
+    --color-secondary: 113 213 18;
+  }
+
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+
+@layer components {
+  .test-square {
+    @apply flex h-60 w-60 bg-primary/50;
+  }
 }
